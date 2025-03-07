@@ -1,0 +1,105 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensure body and html take up the full height of the viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Base Styles */
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center content */
+  align-items: center; /* Horizontally center content */
+  height: 100vh; /* Full viewport height */
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.header p {
+  font-size: 1.2em;
+  color: #555;
+}
+
+.card-set {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Horizontally center the cards */
+  justify-content: center; /* Vertically center the cards within their container */
+  width: 100%;
+  max-width: 400px; /* Max width for cards */
+}
+
+.card {
+  background-color: lightgray;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 10px 0;
+  width: 100%;
+  text-align: center;
+}
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .App {
+    padding: 15px;
+  }
+
+  .header h1 {
+    font-size: 1.5em;
+  }
+
+  .card {
+    padding: 15px;
+    margin: 8px;
+  }
+
+  button {
+    padding: 12px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1.2em;
+  }
+
+  .card {
+    padding: 10px;
+    margin: 6px;
+    font-size: 0.9em;
+  }
+
+  button {
+    padding: 10px 0;
+    font-size: 1em;
+  }
+}
