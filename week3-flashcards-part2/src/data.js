@@ -1,0 +1,22 @@
+export const flashcards = [
+  { id: 1, question: "What is the capital of France?", answer: "Paris" },
+  { id: 2, question: "What is 2 + 2?", answer: "4" },
+  { id: 3, question: "What is the largest planet in our solar system?", answer: "Jupiter" },
+  { id: 4, question: "Who wrote 'Romeo and Juliet'?", answer: "William Shakespeare" },
+  { id: 5, question: "What is the chemical symbol for water?", answer: "H2O" },
+  { id: 6, question: "How many continents are there on Earth?", answer: "7" },
+  { id: 7, question: "What is the square root of 64?", answer: "8" },
+  { id: 8, question: "What is the capital of Japan?", answer: "Tokyo" },
+  { id: 9, question: "Who painted the Mona Lisa?", answer: "Leonardo da Vinci" },
+  { id: 10, question: "What gas do plants absorb from the atmosphere?", answer: "Carbon dioxide" },
+  { id: 11, question: "What is the freezing point of water in Celsius?", answer: "0" },
+  { id: 12, question: "Which planet is known as the Red Planet?", answer: "Mars" },
+  { id: 13, question: "What is the currency of the United Kingdom?", answer: "Pound" },
+  { id: 14, question: "How many sides does a hexagon have?", answer: "6" },
+  { id: 15, question: "What is the fastest land animal?", answer: "Cheetah" },
+  { id: 16, question: "Which ocean is the largest?", answer: "Pacific Ocean" },
+  { id: 17, question: "Who discovered gravity?", answer: "Isaac Newton" },
+  { id: 18, question: "Which element has the atomic number 1?", answer: "Hydrogen" },
+  { id: 19, question: "What is the longest river in the world?", answer: "Nile" },
+  { id: 20, question: "How many bones are in the human body?", answer: "206" }
+];
