@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const API_KEY = import.meta.env.VITE_APP_ACCESS_KEY; 
 
 const RandomContent = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [currentUrl, setCurrentUrl] = useState("");
-  const [bannedUrls, setBannedUrls] = useState([]);
-  const [customUrls, setCustomUrls] = useState([]);
+  const [bannedUrls, setBannedUrls] = useState(() => {
+    return JSON.parse(localStorage.getItem("bannedUrls")) || [];
+  });
+  const [customUrls, setCustomUrls] = useState(() => {
+    return JSON.parse(localStorage.getItem("customUrls")) || [];
+  });
   const [newUrl, setNewUrl] = useState("");
 
   // Default websites
@@ -20,6 +24,15 @@ const RandomContent = () => {
 
   // Combine default and user-added URLs
   const allUrls = [...defaultUrls, ...customUrls];
+
+  // Save data to localStorage whenever the banned list or custom URLs change
+  useEffect(() => {
+    localStorage.setItem("bannedUrls", JSON.stringify(bannedUrls));
+  }, [bannedUrls]);
+
+  useEffect(() => {
+    localStorage.setItem("customUrls", JSON.stringify(customUrls));
+  }, [customUrls]);
 
   // Fetch a random website screenshot (excluding banned ones)
   const fetchRandomSite = async () => {
