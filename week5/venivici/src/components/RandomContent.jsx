@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import "./RandomContent.css"; // Import CSS
 
 const API_KEY = import.meta.env.VITE_APP_ACCESS_KEY; 
@@ -14,6 +14,8 @@ const RandomContent = () => {
   });
   const [newUrl, setNewUrl] = useState("");
   const [loading, setLoading] = useState(false); // Loading state
+  const [error, setError] = useState(""); // Error state feedback
+  const [message, setMessage] = useState(""); // Success message state
 
   const defaultUrls = [
     "https://www.wikipedia.org/",
@@ -35,11 +37,13 @@ const RandomContent = () => {
 
   const fetchRandomSite = async () => {
     setLoading(true); // Set loading to true when fetch starts
+    setError("");
+    setMessage("");
 
     const availableUrls = allUrls.filter(url => !bannedUrls.includes(url));
 
     if (availableUrls.length === 0) {
-      alert("No more available sites! Unban some to continue.");
+      setError("No more available sites! Unban some to continue.");
       setLoading(false); // Set loading to false when fetch ends
       return;
     }
@@ -54,11 +58,12 @@ const RandomContent = () => {
       if (response.ok) {
         setImageUrl(apiUrl);
         setCurrentUrl(randomSite);
+        setMessage("New site loaded successfully!");
       } else {
-        console.error("Error fetching screenshot");
+        setError("Error fetching screenshot");
       }
     } catch (error) {
-      console.error("API request failed", error);
+      setError("API request failed", error);
     } finally {
       setLoading(false); // Set loading to false when fetch ends
     }
@@ -67,11 +72,13 @@ const RandomContent = () => {
   const banCurrentSite = () => {
     if (currentUrl && !bannedUrls.includes(currentUrl)) {
       setBannedUrls([...bannedUrls, currentUrl]);
+      setMessage(`Site "${currentUrl}" has been banned.`);
     }
   };
 
   const unbanSite = (url) => {
     setBannedUrls(bannedUrls.filter(banned => banned !== url));
+    setMessage(`Site "${url}" has been unbanned.`);
   };
 
   const addCustomUrl = () => {
@@ -85,7 +92,7 @@ const RandomContent = () => {
     <div className="container">
       <button onClick={fetchRandomSite}>Discover Something New!</button>
       
-      {loading && <div className="spinner">Loading...</div>} {/* Show loading indicator */}
+      {loading && <div className="spinner"></div>} {/* Show loading indicator */}
 
       {imageUrl && !loading && (
         <div>
@@ -94,6 +101,10 @@ const RandomContent = () => {
           <button onClick={banCurrentSite}>Ban This Site</button>
         </div>
       )}
+      
+
+      {message && <div className="message">{message}</div>} {/* Display success message */}
+      {error && <div className="error">{error}</div>} {/* Display error message */}
       
       <h3>Add a Custom URL</h3>
       <input

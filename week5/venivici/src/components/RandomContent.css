@@ -47,6 +47,7 @@
   }
   
   ul {
+    color: black;
     list-style: none;
     padding: 0;
   }
@@ -88,3 +89,15 @@
     100% { transform: rotate(360deg); }
   }
   
+  /* Success and Error Messages */
+.message {
+  color: green;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.error {
+  color: red;
+  font-size: 16px;
+  margin-top: 10px;
+}
