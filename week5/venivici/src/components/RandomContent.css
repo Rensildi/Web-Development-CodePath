@@ -1,79 +1,18 @@
+/* Make the container take full screen height and width */
 .container {
-    max-width: 600px;
-    margin: auto;
-    text-align: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  input {
-    padding: 8px;
-    width: 80%;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  img {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    margin-top: 10px;
-    border-radius: 5px;
-  }
-  
-  .list-container {
-    margin-top: 20px;
-  }
-  
-  .list-container h3 {
-    margin-bottom: 5px;
-    color: white;
-  }
-  
-  ul {
-    color: black;
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    background: #f8f9fa;
-    padding: 8px;
-    margin: 5px 0;
-    border-radius: 5px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  li button {
-    background-color: #dc3545;
-    padding: 5px 10px;
-    font-size: 14px;
-  }
-  
-  li button:hover {
-    background-color: #a71d2a;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    height: 100vh; /* Take full viewport height */
+    width: 100vw; /* Take full viewport width */
+    flex-direction: column; /* Arrange elements vertically */
+    text-align: center; /* Align text in the center */
+    padding: 0; /* Remove any padding to avoid extra space */
+    margin: 0; /* Remove any margin to avoid extra space */
   }
   
   /* Loading Spinner */
-.spinner {
+  .spinner {
     margin: 20px;
     border: 8px solid #f3f3f3; /* Light gray */
     border-top: 8px solid #3498db; /* Blue */
@@ -90,14 +29,79 @@
   }
   
   /* Success and Error Messages */
-.message {
-  color: green;
-  font-size: 16px;
-  margin-top: 10px;
-}
-
-.error {
-  color: red;
-  font-size: 16px;
-  margin-top: 10px;
-}
+  .message {
+    color: green;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .error {
+    color: red;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  /* Styling the buttons and input */
+  button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #3498db;
+  }
+  
+  .list-container {
+    margin-top: 20px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin: 5px 0;
+  }
+  
+  li button {
+    padding: 5px 10px;
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  li button:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Style for the image (URL Screenshot) */
+img {
+    max-width: 300px; /* Set max width to 300px, adjust as needed */
+    width: 100%; /* Ensures image is responsive */
+    height: auto; /* Maintain the aspect ratio */
+    margin: 10px 0; /* Optional margin for spacing */
+  }
+  
