@@ -1,6 +1,6 @@
-# Web Development Project 4 - *Name of App Here*
+# Web Development Project 4 - *URL generator*
 
-Submitted by: **Your Name Here**
+Submitted by: **Rensildi Kalanxhi**
 
 This web app: **insert description**
 
