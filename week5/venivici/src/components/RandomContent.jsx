@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./RandomContent.css"; // Import CSS
 
 const API_KEY = import.meta.env.VITE_APP_ACCESS_KEY; 
 
@@ -12,8 +13,8 @@ const RandomContent = () => {
     return JSON.parse(localStorage.getItem("customUrls")) || [];
   });
   const [newUrl, setNewUrl] = useState("");
+  const [loading, setLoading] = useState(false); // Loading state
 
-  // Default websites
   const defaultUrls = [
     "https://www.wikipedia.org/",
     "https://www.nationalgeographic.com/",
@@ -22,10 +23,8 @@ const RandomContent = () => {
     "https://www.artstation.com/"
   ];
 
-  // Combine default and user-added URLs
   const allUrls = [...defaultUrls, ...customUrls];
 
-  // Save data to localStorage whenever the banned list or custom URLs change
   useEffect(() => {
     localStorage.setItem("bannedUrls", JSON.stringify(bannedUrls));
   }, [bannedUrls]);
@@ -34,12 +33,14 @@ const RandomContent = () => {
     localStorage.setItem("customUrls", JSON.stringify(customUrls));
   }, [customUrls]);
 
-  // Fetch a random website screenshot (excluding banned ones)
   const fetchRandomSite = async () => {
+    setLoading(true); // Set loading to true when fetch starts
+
     const availableUrls = allUrls.filter(url => !bannedUrls.includes(url));
 
     if (availableUrls.length === 0) {
       alert("No more available sites! Unban some to continue.");
+      setLoading(false); // Set loading to false when fetch ends
       return;
     }
 
@@ -58,22 +59,21 @@ const RandomContent = () => {
       }
     } catch (error) {
       console.error("API request failed", error);
+    } finally {
+      setLoading(false); // Set loading to false when fetch ends
     }
   };
 
-  // Ban the current site
   const banCurrentSite = () => {
     if (currentUrl && !bannedUrls.includes(currentUrl)) {
       setBannedUrls([...bannedUrls, currentUrl]);
     }
   };
 
-  // Unban a site
   const unbanSite = (url) => {
     setBannedUrls(bannedUrls.filter(banned => banned !== url));
   };
 
-  // Add a custom URL
   const addCustomUrl = () => {
     if (newUrl && !customUrls.includes(newUrl) && !defaultUrls.includes(newUrl)) {
       setCustomUrls([...customUrls, newUrl]);
@@ -82,12 +82,14 @@ const RandomContent = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <button onClick={fetchRandomSite}>Discover Something New!</button>
       
-      {imageUrl && (
+      {loading && <div className="spinner">Loading...</div>} {/* Show loading indicator */}
+
+      {imageUrl && !loading && (
         <div>
-          <img src={imageUrl} alt="Random Website Screenshot" style={{ width: "100%", marginTop: "10px" }} />
+          <img src={imageUrl} alt="Random Website Screenshot" />
           <p>{currentUrl}</p>
           <button onClick={banCurrentSite}>Ban This Site</button>
         </div>
@@ -102,21 +104,25 @@ const RandomContent = () => {
       />
       <button onClick={addCustomUrl}>Add URL</button>
 
-      <h3>Banned Sites</h3>
-      <ul>
-        {bannedUrls.map((url, index) => (
-          <li key={index}>
-            {url} <button onClick={() => unbanSite(url)}>Unban</button>
-          </li>
-        ))}
-      </ul>
-      
-      <h3>Custom Added Sites</h3>
-      <ul>
-        {customUrls.map((url, index) => (
-          <li key={index}>{url}</li>
-        ))}
-      </ul>
+      <div className="list-container">
+        <h3>Banned Sites</h3>
+        <ul>
+          {bannedUrls.map((url, index) => (
+            <li key={index}>
+              {url} <button onClick={() => unbanSite(url)}>Unban</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="list-container">
+        <h3>Custom Added Sites</h3>
+        <ul>
+          {customUrls.map((url, index) => (
+            <li key={index}>{url}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
