@@ -33,6 +33,11 @@ li.main-list {
   color: white;
 }
 
+.tab{
+  display: inline-block;
+  margin-left: 75px;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
