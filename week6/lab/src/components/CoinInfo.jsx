@@ -13,12 +13,28 @@ const CoinInfo = ({image, name, symbol}) => {
                 API_KEY
             );
             const json = await response.json();
-            setPrice(json);
+            setPrice(json.USD);
         };
         getCoinPrice().catch(console.error);
         // instead of useEffect runnig on every render, it will now run whenever the symbol we pass in changes.
         // so everytime a new coin symbol is given to get the infor for, the useEffcct() hook will run.
     }, [symbol]); 
+
+    return (
+        <div>
+            {price ? ( // rendering only if API call actually returned data
+                <li className="main-list" key={symbol}>
+                    <img className="icons" 
+                         src={`https://www.cryptocompare.com${image}`} 
+                         alt={`Small icon for ${name} crypto coin`} 
+                    />
+                    {name} <span className="tab" ></span> ${price.USD} USD
+                </li>
+            ) :
+            null
+            }
+        </div>
+    )
 };
 
 export default CoinInfo;
