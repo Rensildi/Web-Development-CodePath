@@ -8,12 +8,19 @@ const CoinInfo = ({image, name, symbol}) => {
     useEffect(() => {
         // creating getCoinPrice functin in the useEffect() hook
         const getCoinPrice = async () => {
-            const response = await fetch (
-                `https://min-api.cryptocompare.com/data/price?fsym=${symbol}&tsyms=USD&api_key=` +
-                API_KEY
-            );
-            const json = await response.json();
-            setPrice(json.USD);
+            try {
+                const response = await fetch(
+                    `https://min-api.cryptocompare.com/data/price?fsym=${symbol}&tsyms=USD&api_key=${API_KEY}`
+                );
+                const json = await response.json();
+                if (json.USD) {
+                    setPrice(json.USD);
+                } else {
+                    console.error("Invalid API response:", json);
+                }
+            } catch (error) {
+                console.error("Error fetching price:", error);
+            }
         };
         getCoinPrice().catch(console.error);
         // instead of useEffect runnig on every render, it will now run whenever the symbol we pass in changes.
@@ -25,10 +32,12 @@ const CoinInfo = ({image, name, symbol}) => {
             {price ? ( // rendering only if API call actually returned data
                 <li className="main-list" key={symbol}>
                     <img className="icons" 
-                         src={`https://www.cryptocompare.com${image}`} 
+                         src={`https://www.cryptocompare.com${image}`}
                          alt={`Small icon for ${name} crypto coin`} 
                     />
-                    {name} <span className="tab" ></span> ${price.USD} USD
+                    {name} 
+                    <span className="tab" ></span>
+                    ${price.USD} USD
                 </li>
             ) :
             null
