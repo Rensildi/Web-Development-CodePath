@@ -1,0 +1,153 @@
+/* Base styles for the app container */
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  
+  /* Dashboard layout */
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+  }
+  
+  /* Controls section */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .controls input,
+  .controls select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 200px;
+    box-sizing: border-box;
+  }
+  
+  .controls input {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  /* Statistics section */
+  .weather-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .stat-card {
+    flex: 1 1 calc(20% - 15px);
+    min-width: 150px;
+    max-width: 200px;
+    padding: 15px;
+    background-color: black;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Weather list */
+  .weather-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    align-items: center;
+  }
+  
+  /* Weather card */
+  .weather-card {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: black;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    gap: 10px;
+  }
+  
+  .card-header h2 {
+    margin: 0;
+    font-size: clamp(18px, 2vw, 24px);
+  }
+  
+  .card-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+  
+  .card-body p {
+    margin: 5px 0;
+    font-size: clamp(14px, 1.5vw, 16px);
+    text-align: center;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .controls {
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+  
+    .controls input,
+    .controls select {
+      width: 100%;
+      max-width: 400px;
+    }
+  
+    .stat-card {
+      flex: 1 1 calc(50% - 15px);
+    }
+  
+    .card-body {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .app {
+      padding: 10px;
+    }
+  
+    .stat-card {
+      flex: 1 1 100%;
+      max-width: none;
+    }
+  
+    .card-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .card-body {
+      grid-template-columns: 1fr;
+    }
+  }
+  
