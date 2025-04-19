@@ -19,8 +19,6 @@ export default function Create() {
     e.preventDefault();
     
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      
       const { data, error } = await supabase
         .from('characters')
         .insert([{ 
@@ -29,8 +27,7 @@ export default function Create() {
           role, 
           level, 
           description,
-          image_url: imageUrl,
-          user_id: user.id
+          image_url: imageUrl
         }])
         .single();
 
