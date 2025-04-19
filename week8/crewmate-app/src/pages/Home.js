@@ -1,29 +1,30 @@
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { supabase } from '../lib/supabaseClient'
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { supabase } from '../lib/supabaseClient';
+import styles from './Home.module.css';
 
-export function Home() {
-  const [characters, setCharacters] = useState([])
-  const [loading, setLoading] = useState(true)
+export default function Home() {
+  const [characters, setCharacters] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchCharacters()
-  }, [])
+    fetchCharacters();
+  }, []);
 
   async function fetchCharacters() {
     try {
-      setLoading(true)
+      setLoading(true);
       const { data, error } = await supabase
         .from('characters')
         .select('*')
-        .order('created_at', { ascending: false })
+        .order('created_at', { ascending: false });
 
-      if (error) throw error
-      setCharacters(data)
+      if (error) throw error;
+      setCharacters(data);
     } catch (error) {
-      alert(error.message)
+      alert(error.message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
@@ -31,39 +32,39 @@ export function Home() {
     <div className="loading-container">
       <div className="loading-spinner"></div>
     </div>
-  )
+  );
 
   return (
-    <div className="container">
-      <h1 className="page-title">Your Team</h1>
+    <div className={`${styles.container} container`}>
+      <h1 className={styles.title}>Your Team</h1>
       {characters.length === 0 ? (
-        <div className="empty-state">
+        <div className={styles.emptyState}>
           <p>No characters yet. Create your first one!</p>
-          <Link to="/create" className="btn btn-primary">Create Character</Link>
+          <Link to="/create" className={styles.createButton}>Create Character</Link>
         </div>
       ) : (
-        <div className="character-grid">
+        <div className={styles.characterGrid}>
           {characters.map((character) => (
-            <div key={character.id} className="character-card">
+            <div key={character.id} className={styles.characterCard}>
               {character.image_url && (
                 <img 
                   src={character.image_url} 
                   alt={character.name} 
-                  className="character-image"
+                  className={styles.characterImage}
                 />
               )}
-              <div className="character-content">
-                <h2 className="character-name">{character.name}</h2>
-                <div className="character-meta">
-                  <span className="character-class">{character.class}</span>
-                  <span className="character-level">Level {character.level}</span>
+              <div className={styles.characterContent}>
+                <h2 className={styles.characterName}>{character.name}</h2>
+                <div className={styles.characterMeta}>
+                  <span className={styles.characterClass}>{character.class}</span>
+                  <span className={styles.characterLevel}>Level {character.level}</span>
                 </div>
-                <p className="character-role">{character.role}</p>
-                <div className="character-actions">
-                  <Link to={`/character/${character.id}`} className="btn btn-outline">
+                <p className={styles.characterRole}>{character.role}</p>
+                <div className={styles.characterActions}>
+                  <Link to={`/character/${character.id}`} className={styles.detailButton}>
                     Details
                   </Link>
-                  <Link to={`/edit/${character.id}`} className="btn btn-primary">
+                  <Link to={`/edit/${character.id}`} className={styles.editButton}>
                     Edit
                   </Link>
                 </div>
@@ -73,6 +74,5 @@ export function Home() {
         </div>
       )}
     </div>
-  )
+  );
 }
-export default Home

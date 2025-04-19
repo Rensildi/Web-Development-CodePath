@@ -1,10 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Home } from './pages/Home'
-import { Create } from './pages/Create'
-import { Edit } from './pages/Edit'
-import { Detail } from './pages/Detail'
-import { Navbar } from './components/Navbar'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Create from './pages/Create';
+import Edit from './pages/Edit';
+import Detail from './pages/Detail';
+import Navbar from './components/Navbar';
+import './App.css';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         </main>
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

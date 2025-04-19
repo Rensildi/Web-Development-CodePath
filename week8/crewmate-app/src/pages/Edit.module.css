@@ -1,0 +1,151 @@
+.container {
+  padding: 2rem 0;
+}
+
+.formContainer {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2rem;
+  color: #2b2d42;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background-color: #4361ee;
+}
+
+.characterForm {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #2b2d42;
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #4361ee;
+}
+
+.formTextarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.attributeOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.attributeBtn {
+  padding: 0.5rem 1rem;
+  background-color: #e9ecef;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.attributeBtn.selected {
+  background-color: #4361ee;
+  color: white;
+}
+
+.formActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.saveButton {
+  padding: 0.75rem 1.5rem;
+  background-color: #4361ee;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.saveButton:hover {
+  background-color: #3f37c9;
+}
+
+.deleteButton {
+  padding: 0.75rem 1.5rem;
+  background-color: #ef233c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  opacity: 0.9;
+}
+
+.cancelButton {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 2px solid #4361ee;
+  color: #4361ee;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background: #4361ee;
+  color: white;
+}
+
+@media (max-width: 576px) {
+  .formActions {
+    flex-direction: column;
+  }
+  
+  .saveButton,
+  .deleteButton,
+  .cancelButton {
+    width: 100%;
+  }
+}

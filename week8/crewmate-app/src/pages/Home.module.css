@@ -1,0 +1,142 @@
+.container {
+  padding: 2rem 0;
+}
+
+.title {
+  font-size: 2rem;
+  color: #2b2d42;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background-color: #4361ee;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.createButton {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #4361ee;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.createButton:hover {
+  background-color: #3f37c9;
+}
+
+.characterGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.characterCard {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.characterCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.characterImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.characterContent {
+  padding: 1.5rem;
+}
+
+.characterName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #2b2d42;
+}
+
+.characterMeta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.characterClass {
+  background-color: rgba(67, 97, 238, 0.1);
+  color: #4361ee;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.characterLevel {
+  color: #6c757d;
+}
+
+.characterRole {
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.characterActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.detailButton {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 2px solid #4361ee;
+  color: #4361ee;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.detailButton:hover {
+  background: #4361ee;
+  color: white;
+}
+
+.editButton {
+  padding: 0.5rem 1rem;
+  background-color: #4361ee;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.editButton:hover {
+  background-color: #3f37c9;
+}
