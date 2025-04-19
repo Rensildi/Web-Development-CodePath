@@ -57,6 +57,9 @@ export function Edit() {
   }
 
   async function handleDelete() {
+    const confirmDelete = window.confirm('Are you sure you want to delete this character?')
+    if (!confirmDelete) return
+    
     try {
       const { error } = await supabase
         .from('characters')
@@ -70,86 +73,114 @@ export function Edit() {
     }
   }
 
-  if (loading) return <div>Loading...</div>
-  if (!character) return <div>Character not found</div>
+  if (loading) return (
+    <div className="loading-container">
+      <div className="loading-spinner"></div>
+    </div>
+  )
+
+  if (!character) return <div className="container">Character not found</div>
 
   return (
-    <div>
-      <h1>Edit Character</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input 
-            type="text" 
-            value={character.name} 
-            onChange={(e) => setCharacter({...character, name: e.target.value})} 
-            required 
-          />
-        </label>
-
-        <label>
-          Class:
-          <div>
-            {classes.map((cls) => (
-              <button 
-                key={cls} 
-                type="button"
-                className={character.class === cls ? 'selected' : ''}
-                onClick={() => setCharacter({...character, class: cls})}
-              >
-                {cls}
-              </button>
-            ))}
+    <div className="container">
+      <div className="form-container">
+        <h1 className="page-title">Edit Character</h1>
+        <form onSubmit={handleSubmit} className="character-form">
+          <div className="form-group">
+            <label className="form-label">Name</label>
+            <input
+              type="text"
+              className="form-input"
+              value={character.name}
+              onChange={(e) => setCharacter({...character, name: e.target.value})}
+              required
+            />
           </div>
-        </label>
 
-        <label>
-          Role:
-          <div>
-            {roles.map((r) => (
-              <button 
-                key={r} 
-                type="button"
-                className={character.role === r ? 'selected' : ''}
-                onClick={() => setCharacter({...character, role: r})}
-              >
-                {r}
-              </button>
-            ))}
+          <div className="form-group">
+            <label className="form-label">Class</label>
+            <div className="attribute-options">
+              {classes.map((cls) => (
+                <button
+                  key={cls}
+                  type="button"
+                  className={`attribute-btn ${character.class === cls ? 'selected' : ''}`}
+                  onClick={() => setCharacter({...character, class: cls})}
+                >
+                  {cls}
+                </button>
+              ))}
+            </div>
           </div>
-        </label>
 
-        <label>
-          Level:
-          <input 
-            type="number" 
-            min="1" 
-            max="100" 
-            value={character.level} 
-            onChange={(e) => setCharacter({...character, level: e.target.value})} 
-          />
-        </label>
+          <div className="form-group">
+            <label className="form-label">Role</label>
+            <div className="attribute-options">
+              {roles.map((r) => (
+                <button
+                  key={r}
+                  type="button"
+                  className={`attribute-btn ${character.role === r ? 'selected' : ''}`}
+                  onClick={() => setCharacter({...character, role: r})}
+                >
+                  {r}
+                </button>
+              ))}
+            </div>
+          </div>
 
-        <label>
-          Description:
-          <textarea 
-            value={character.description} 
-            onChange={(e) => setCharacter({...character, description: e.target.value})} 
-          />
-        </label>
+          <div className="form-group">
+            <label className="form-label">Level</label>
+            <input
+              type="number"
+              min="1"
+              max="100"
+              className="form-input"
+              value={character.level}
+              onChange={(e) => setCharacter({...character, level: e.target.value})}
+            />
+          </div>
 
-        <label>
-          Image URL:
-          <input 
-            type="url" 
-            value={character.image_url || ''} 
-            onChange={(e) => setCharacter({...character, image_url: e.target.value})} 
-          />
-        </label>
+          <div className="form-group">
+            <label className="form-label">Description</label>
+            <textarea
+              className="form-input form-textarea"
+              value={character.description}
+              onChange={(e) => setCharacter({...character, description: e.target.value})}
+            />
+          </div>
 
-        <button type="submit">Update Character</button>
-        <button type="button" onClick={handleDelete}>Delete Character</button>
-      </form>
+          <div className="form-group">
+            <label className="form-label">Image URL</label>
+            <input
+              type="url"
+              className="form-input"
+              value={character.image_url || ''}
+              onChange={(e) => setCharacter({...character, image_url: e.target.value})}
+            />
+          </div>
+
+          <div className="form-actions">
+            <button type="submit" className="btn btn-primary">
+              Save Changes
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={handleDelete}
+            >
+              Delete Character
+            </button>
+            <button
+              type="button"
+              className="btn btn-outline"
+              onClick={() => navigate('/')}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }
